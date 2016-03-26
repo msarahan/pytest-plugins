@@ -30,9 +30,12 @@ htmlcov
 TAGS
 /venv/
 /pip-log.txt
+*.swp
 
 # Copied files
 */MANIFEST.in
 */CHANGES.md
 */VERSION
 */common_setup.py
+/pyqt
+/sip
