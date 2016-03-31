@@ -77,7 +77,7 @@ class DevpiServer(HTTPTestServer):
         self.debug = debug
         if os.getenv('DEBUG') in (True, '1', 'Y', 'y'):
             self.debug = True
-        super(DevpiServer, self).__init__(**kwargs)
+        super(DevpiServer, self).__init__(preserve_sys_path=True, **kwargs)
 
         self.offline = offline
         self.data = data
@@ -89,8 +89,7 @@ class DevpiServer(HTTPTestServer):
 
     @property
     def run_cmd(self):
-        res = [path(sys.exec_prefix) / 'bin' / 'python',
-                path(sys.exec_prefix) / 'bin' / 'devpi-server',
+        res = [sys.executable, '-c', 'from devpi_server.main import main; main()',
                 '--serverdir', self.server_dir,
                 '--host', self.hostname,
                 '--port', str(self.port)
