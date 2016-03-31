@@ -9,4 +9,3 @@ test:
   override:
     - make circleci:
         parallel: true
-        
